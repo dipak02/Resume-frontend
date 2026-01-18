@@ -1,0 +1,15 @@
+# settings for the build process
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# This handles the "MIME type" and routing errors for React SPAs
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Fixes MIME type issues for specific files if needed
+[[headers]]
+  for = "/*"
+  [headers.values]
