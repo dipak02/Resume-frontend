@@ -81,7 +81,7 @@ const Contact = () => {
           <div className="animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
             <form 
               onSubmit={handleSubmit}
-              className="relative overflow-hidden bg-gradient-to-br from-emerald-300 to-emerald-500 dark:from-slate-900 dark:to-slate-800 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 rounded-[3rem] shadow-2xl shadow-emerald-500/5 space-y-6 transition-colors duration-500"
+              className="relative overflow-hidden bg-gradient-to-br from-emerald-100 to-emerald-300 dark:from-slate-900 dark:to-slate-800 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 rounded-[3rem] shadow-2xl shadow-emerald-500/5 space-y-6 transition-colors duration-500"
             >
               {/* Background Contact Icon inside the Form Card */}
               <Contact2 
@@ -100,7 +100,7 @@ const Contact = () => {
 
               <div className="relative z-10 space-y-5">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-white ml-1">Full Name</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Full Name</label>
                   <input 
                     type="text" 
                     placeholder="Enter your name"
@@ -110,7 +110,7 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-white ml-1">Email Address</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Email Address</label>
                   <input 
                     type="email" 
                     placeholder="you@example.com"
@@ -120,7 +120,7 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-white ml-1">Your Message</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Your Message</label>
                   <textarea 
                     rows="4" 
                     placeholder="Tell me about your project..."
