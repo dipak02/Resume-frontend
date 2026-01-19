@@ -5,7 +5,8 @@ import {
   Clock, 
   BookOpen, 
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  BookOpenText
 } from 'lucide-react';
 
 /**
@@ -56,8 +57,8 @@ const Blog = () => {
         {/* Header Section */}
         <div id="blog" className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
           <div className="flex items-center gap-2">
-            <div className="h-1 w-8 bg-indigo-600 rounded-full" />
-            <h1 className="text-indigo-600 dark:text-indigo-400 font-black text-xs uppercase tracking-[0.4em]">
+            <div className="h-1 w-8 bg-emerald-600 rounded-full" />
+            <h1 className="text-emerald-600 dark:text-emerald-400 font-black text-xs uppercase tracking-[0.4em]">
               Journal
             </h1>
           </div>
@@ -65,7 +66,7 @@ const Blog = () => {
             <p className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight uppercase">
               My Blog Posts
             </p> 
-            <button className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 hover:gap-4 transition-all group">
+            <button className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 hover:gap-4 transition-all group">
               View All Insights <ChevronRight size={16} />
             </button>
           </div>
@@ -77,7 +78,7 @@ const Blog = () => {
             <article 
               key={index}
               style={{ animationDelay: `${index * 150}ms` }}
-              className="group relative h-[450px] w-full overflow-hidden rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-slate-900 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/20 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-8 fill-mode-both"
+              className="group relative h-[450px] w-full overflow-hidden rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-slate-900 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-8 fill-mode-both"
             >
               {/* Background Image with Filter */}
               <img
@@ -100,7 +101,7 @@ const Blog = () => {
               <div className="relative h-full flex flex-col justify-end p-8 space-y-4">
                 <div className="space-y-3">
                   {/* Meta Tags */}
-                  <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-indigo-400">
+                  <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-emerald-400">
                     <span className="flex items-center gap-1.5">
                       <Calendar size={12} /> {data.date}
                     </span>
@@ -111,7 +112,7 @@ const Blog = () => {
 
                   {/* Title */}
                   <a href="#" className="block group/title">
-                    <h3 className="text-xl font-black text-white leading-tight transition-colors group-hover/title:text-indigo-400">
+                    <h3 className="text-xl font-black text-white leading-tight transition-colors group-hover/title:text-emerald-400">
                       {data.title}
                     </h3>
                   </a>
@@ -124,12 +125,12 @@ const Blog = () => {
 
                 {/* Footer Link */}
                 <div className="pt-2">
-                  <div className="h-1 w-12 bg-indigo-600 rounded-full group-hover:w-full transition-all duration-700" />
+                  <div className="h-1 w-12 bg-emerald-600 rounded-full group-hover:w-full transition-all duration-700" />
                   <a 
                     href="#" 
                     className="mt-4 inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                   >
-                    Read Full Article <Sparkles size={12} className="text-indigo-400" />
+                    Read Full Article <Sparkles size={12} className="text-emerald-400" />
                   </a>
                 </div>
               </div>
@@ -142,8 +143,8 @@ const Blog = () => {
           <hr className="border-slate-200 dark:border-slate-800" />
           <div className="flex justify-center -mt-4">
              <div className="px-6 bg-slate-50 dark:bg-slate-950 flex gap-4 text-slate-300 dark:text-slate-700">
-                <BookOpen className="size-6" />
-                <Sparkles className="size-6" />
+                <BookOpenText className="size-6" />
+               
              </div>
           </div>
         </div>

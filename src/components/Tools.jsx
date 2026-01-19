@@ -1,3 +1,4 @@
+import { ToolCase } from "lucide-react";
 import React from "react";
 
 /**
@@ -10,7 +11,7 @@ import React from "react";
  */
 const Tools = () => {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-6">
+    <div className=" bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
       <div className="max-w-4xl w-full space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
         
         {/* Section Header */}
@@ -18,7 +19,7 @@ const Tools = () => {
           <h2 className="text-4xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
             Tools I Use
           </h2>
-          <div className="h-1.5 w-20 bg-indigo-600 mx-auto rounded-full" />
+          <div className="h-1.5 w-20 bg-emerald-600 mx-auto rounded-full" />
           <p className="text-slate-500 dark:text-slate-400 font-medium text-sm mt-4">
             My essential stack for development and design
           </p>
@@ -83,7 +84,7 @@ const Tools = () => {
           <div className="group relative cursor-pointer transition-transform hover:scale-110 active:scale-95">
             <div className="absolute -inset-4 bg-emerald-500/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" className="relative z-10">
-              <path fill="#022416" d="M11,3v5.1582c-0.347,-0.141 -1.09584,-0.1582 -1.46484,-0.1582c-2.776,0 -5.3457,1.306 -5.3457,5c0,4.42 3.48055,5 5.81055,5c0.92,0 3,-0.09086 4,-0.38086v-14.61914zM16,3v3h3v-3zM16,8v8.70117c0,1.516 -0.922,3.094 -3,4l2.85938,1.29492c2.906,-1 3.14063,-4.29492 3.14063,-5.29492v-8.70117zM9.9707,10.55078c0.32,0 0.6793,0.05867 1.0293,0.13867v4.70313c-0.35,0.08 -0.7093,0.14063 -1.0293,0.14063c-1.31,0 -2.58008,-0.4132 -2.58008,-2.5332c0,-2.12 1.27008,-2.44922 2.58008,-2.44922z"></path>
+              <path fill="#023d24ff" d="M11,3v5.1582c-0.347,-0.141 -1.09584,-0.1582 -1.46484,-0.1582c-2.776,0 -5.3457,1.306 -5.3457,5c0,4.42 3.48055,5 5.81055,5c0.92,0 3,-0.09086 4,-0.38086v-14.61914zM16,3v3h3v-3zM16,8v8.70117c0,1.516 -0.922,3.094 -3,4l2.85938,1.29492c2.906,-1 3.14063,-4.29492 3.14063,-5.29492v-8.70117zM9.9707,10.55078c0.32,0 0.6793,0.05867 1.0293,0.13867v4.70313c-0.35,0.08 -0.7093,0.14063 -1.0293,0.14063c-1.31,0 -2.58008,-0.4132 -2.58008,-2.5332c0,-2.12 1.27008,-2.44922 2.58008,-2.44922z"></path>
             </svg>
           </div>
 
@@ -100,11 +101,16 @@ const Tools = () => {
         </div>
 
         {/* Action Label */}
-        <div className="text-center">
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
-            Hover over icons for details
-          </p>
-        </div>
+         <div className="pt-12 animate-in fade-in duration-1000">
+                  <hr className="border-slate-200 dark:border-slate-800" />
+                  <div className="flex justify-center -mt-4">
+                     <div className="px-6 bg-slate-50 dark:bg-slate-950 flex gap-4 text-slate-300 dark:text-slate-700">
+                        <ToolCase className="size-6" />
+                        
+                     </div>
+                  </div>
+                </div>
+       
 
       </div>
     </div>

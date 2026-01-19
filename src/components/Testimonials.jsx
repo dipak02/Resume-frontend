@@ -7,7 +7,8 @@ import {
   MessageSquare,
   Sparkles,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  MessageSquareQuote
 } from 'lucide-react';
 
 /**
@@ -95,16 +96,16 @@ const Testimonials = () => {
         {/* Header Section */}
         <div id="testimonials" className="text-center space-y-4 animate-in fade-in slide-in-from-top-4 duration-700">
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-indigo-600 dark:text-indigo-400 font-black text-xs uppercase tracking-[0.4em]">
+            <h1 className="text-emerald-600 dark:text-emerald-400 font-black text-xs uppercase tracking-[0.4em]">
               Testimonials
             </h1>
-            <div className="h-1 w-12 bg-indigo-600 rounded-full" />
+            <div className="h-1 w-12 bg-emerald-600 rounded-full" />
           </div>
           <div className="space-y-1">
             <p className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight uppercase">
               What my subscribers say!
             </p> 
-            <div className="flex items-center justify-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold">
+            <div className="flex items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold">
               <Sparkles size={18} className="animate-pulse" />
               <span>Real stories from real partners</span>
             </div>
@@ -124,19 +125,19 @@ const Testimonials = () => {
             >
               {testimonialsData.map((data) => (
                 <div key={data.id} className={`shrink-0 px-4 ${isMobile ? 'w-full' : 'w-1/2'}`}>
-                  <div className="h-full flex flex-col gap-6 items-center rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10 group">
+                  <div className="h-full flex flex-col gap-6 items-center rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/10 group">
                     
                     {/* Header: Profile & Rating */}
                     <div className="w-full flex justify-between items-start">
                       <div className="relative shrink-0">
-                        <div className="absolute -inset-1 bg-indigo-500 rounded-2xl blur opacity-10 group-hover:opacity-30 transition-opacity" />
+                        <div className="absolute -inset-1 bg-emerald-500 rounded-2xl blur opacity-10 group-hover:opacity-30 transition-opacity" />
                         <img
                           alt={data.name}
                           src={data.image}
                           className="relative size-20 rounded-2xl object-cover border-2 border-white dark:border-slate-800 shadow-lg"
                         />
                       </div>
-                      <div className="text-indigo-600/20 dark:text-indigo-400/10 transition-colors">
+                      <div className="text-emerald-600/20 dark:text-emerald-400/10 transition-colors">
                         <Quote size={40} />
                       </div>
                     </div>
@@ -176,13 +177,13 @@ const Testimonials = () => {
           <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none">
             <button 
               onClick={prevSlide}
-              className="pointer-events-auto size-12 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all active:scale-90"
+              className="pointer-events-auto size-12 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all active:scale-90"
             >
               <ChevronLeft size={24} />
             </button>
             <button 
               onClick={nextSlide}
-              className="pointer-events-auto size-12 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all active:scale-90"
+              className="pointer-events-auto size-12 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all active:scale-90"
             >
               <ChevronRight size={24} />
             </button>
@@ -196,7 +197,7 @@ const Testimonials = () => {
                 onClick={() => setActiveIndex(i)}
                 className={`transition-all duration-300 rounded-full h-2 ${
                   activeIndex === i 
-                    ? 'w-10 bg-indigo-600' 
+                    ? 'w-10 bg-emerald-600' 
                     : 'w-2 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400'
                 }`}
               />
@@ -209,8 +210,8 @@ const Testimonials = () => {
           <hr className="border-slate-200 dark:border-slate-800" />
           <div className="flex justify-center -mt-4">
              <div className="px-6 bg-slate-50 dark:bg-slate-950 flex gap-4 text-slate-300 dark:text-slate-700">
-                <MessageSquare className="size-6" />
-                <Star className="size-6" />
+                <MessageSquareQuote className="size-6" />
+                
              </div>
           </div>
         </div>

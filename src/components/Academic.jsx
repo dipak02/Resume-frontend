@@ -98,12 +98,12 @@ const Academic = () => {
                 </div>
               </div>
               <div className="p-8 font-mono text-xs md:text-sm leading-relaxed space-y-2">
-                <p><span className="text-emerald-500">class</span> <span className="text-white">Developer</span>:</p>
-                <p className="pl-4"><span className="text-emerald-500">def</span> <span className="text-blue-400">__init__</span>(self):</p>
-                <p className="pl-8 text-slate-400">self.name = <span className="text-amber-300">"Dipak Shah"</span></p>
+                <p><span className="text-emerald-500">class</span> <span className="text-white">Developer:</span></p>
+                <p className="pl-4"><span className="text-emerald-500">def</span> <span className="text-blue-400">__init__</span><span className="text-white">(self):</span></p>
+                <p className="pl-8 text-slate-400">self.name = <span className="text-amber-300">"Dipak Kumar Shah"</span></p>
                 <p className="pl-8 text-slate-400">self.role = <span className="text-amber-300">"Full Stack IT Engineer"</span></p>
-                <p className="pl-8 text-slate-400">self.location = <span className="text-amber-300">"Kathmandu, NP"</span></p>
-                <p className="pl-4 mt-4"><span className="text-emerald-500">def</span> <span className="text-blue-400">get_vibe</span>(self):</p>
+                <p className="pl-8 text-slate-400">self.location = <span className="text-amber-300">"Kathmandu, Nepal"</span></p>
+                <p className="pl-4 mt-4"><span className="text-emerald-500">def</span> <span className="text-blue-400">get_vibe</span><span className="text-white">(self):</span></p>
                 <p className="pl-8 text-slate-400"><span className="text-emerald-500">return</span> [<span className="text-amber-300">"Clean Code"</span>, <span className="text-amber-300">"Modern UI"</span>]</p>
                 <div className="pt-4 border-t border-slate-800 mt-4">
                   <p className="text-emerald-500/50 italic"># Currently building the future...</p>
@@ -168,9 +168,15 @@ const Academic = () => {
           </div>
         </section>
 
-        <div className="pt-8 opacity-10 flex justify-center">
-          <div className="h-px w-24 bg-emerald-800" />
-        </div>
+        <div className="pt-6 animate-in fade-in duration-1000">
+                  <hr className="border-slate-200 dark:border-slate-800" />
+                  <div className="flex justify-center -mt-4">
+                     <div className="px-6 bg-slate-50 dark:bg-slate-950 flex gap-4 text-slate-300 dark:text-slate-700">
+                        <GraduationCap className="size-6" />
+                        
+                     </div>
+                  </div>
+                </div>
       </main>
     </div>
   );

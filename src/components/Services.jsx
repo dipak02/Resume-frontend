@@ -42,15 +42,15 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-6 md:p-12 lg:p-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 px-6 ">
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Header Section */}
         <div id="services" className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
           <div className="flex items-center gap-2">
-            <div className="h-1 w-8 bg-indigo-600 rounded-full" />
-            <h1 className="text-indigo-600 dark:text-indigo-400 font-black text-xs uppercase tracking-[0.3em]">
-              Our Expertise
+            <div className="h-1 w-8 bg-emerald-600 rounded-full" />
+            <h1 className="text-emerald-600 dark:text-emerald-400 font-black text-xs uppercase tracking-[0.3em]">
+              My Expertise
             </h1>
           </div>
           <p className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight uppercase">
@@ -73,7 +73,7 @@ const Services = () => {
 
               <div className="relative z-10 space-y-6">
                 {/* Icon Badge */}
-                <div className="inline-flex rounded-2xl bg-indigo-600 p-4 text-white shadow-xl shadow-indigo-600/20 group-hover:scale-110 transition-transform duration-500">
+                <div className="inline-flex rounded-2xl bg-emerald-600 p-4 text-white shadow-xl shadow-indigo-600/20 group-hover:scale-110 transition-transform duration-500">
                   {data.icon}
                 </div>
 
@@ -82,7 +82,7 @@ const Services = () => {
                     <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight">
                       {data.title}
                     </h3>
-                    <ArrowUpRight className="size-5 text-slate-300 dark:text-slate-700 group-hover:text-indigo-500 transition-colors" />
+                    <ArrowUpRight className="size-5 text-slate-300 dark:text-slate-700 group-hover:text-emerald-500 transition-colors" />
                   </div>
 
                   <p className="text-sm/relaxed text-slate-500 dark:text-slate-400 font-medium">
@@ -92,7 +92,7 @@ const Services = () => {
 
                 {/* Decorative Bottom Bar */}
                 <div className="pt-4">
-                  <div className="h-1 w-12 bg-slate-100 dark:bg-slate-800 rounded-full group-hover:w-full group-hover:bg-indigo-600 transition-all duration-700" />
+                  <div className="h-1 w-12 bg-slate-100 dark:bg-slate-800 rounded-full group-hover:w-full group-hover:bg-emerald-600 transition-all duration-700" />
                 </div>
               </div>
             </article>
@@ -100,7 +100,7 @@ const Services = () => {
         </div>
 
         {/* Footer Divider */}
-        <div className="pt-12 animate-in fade-in duration-1000">
+        <div className=" animate-in fade-in duration-1000">
           <hr className="border-slate-200 dark:border-slate-800" />
           <div className="flex justify-center -mt-3">
              <div className="px-4 bg-slate-50 dark:bg-slate-950">

@@ -1,8 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
 
 import Navbar from './components/Navbar'
 import Academic from './components/Academic'
@@ -18,11 +15,9 @@ import Footer from './components/Footer'
 import WorkExperience from './components/WorkExperience'
 
 function App() {
-
-
   return (
     <>
-     <div id="home" class="w-full mx-auto p-6 space-y-6">
+     <div id="home" className="w-full mx-auto px-1 py-6 space-y-6 bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
       <Navbar />
       <Main/>
       <Tools/>
@@ -39,7 +34,5 @@ function App() {
     </>
   )
 }
-
-
 
 export default App

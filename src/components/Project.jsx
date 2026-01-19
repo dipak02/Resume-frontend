@@ -57,14 +57,14 @@ const Projects = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-6 md:p-12 lg:p-16">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 px-4">
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Header Section */}
         <div id="projects" className="space-y-4 animate-in fade-in slide-in-from-left-4 duration-700">
           <div className="flex items-center gap-2">
-            <div className="h-1 w-8 bg-indigo-600 rounded-full" />
-            <h1 className="text-indigo-600 dark:text-indigo-400 font-black text-xs uppercase tracking-[0.3em]">
+            <div className="h-1 w-8 bg-emerald-600 rounded-full" />
+            <h1 className="text-emerald-600 dark:text-emerald-400 font-black text-xs uppercase tracking-[0.3em]">
               Portfolio
             </h1>
           </div>
@@ -79,18 +79,18 @@ const Projects = () => {
             <article 
               key={index}
               style={{ animationDelay: `${index * 150}ms` }}
-              className="group relative flex flex-col overflow-hidden rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-8 fill-mode-both"
+              className="group relative flex flex-col overflow-hidden rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/10 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-8 fill-mode-both"
             >
               {/* Image Container */}
               <div className="relative h-52 w-full overflow-hidden">
-                <div className="absolute inset-0 bg-indigo-600/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <div className="absolute inset-0 bg-emerald-600/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                 <img
                   alt={data.title}
                   src={data.img}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 right-4 z-20 flex gap-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                  <button className="p-2 rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-lg text-slate-900 dark:text-white hover:text-indigo-600 transition-colors">
+                  <button className="p-2 rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-lg text-slate-900 dark:text-white hover:text-emerald-600 transition-colors">
                     <Github size={18} />
                   </button>
                 </div>
@@ -99,7 +99,7 @@ const Projects = () => {
               {/* Card Body */}
               <div className="relative flex-1 p-6 sm:p-8 space-y-4">
                 {/* Background Icon Decoration */}
-                <div className="absolute -bottom-10 -right-10 text-slate-100 dark:text-slate-800 transition-all duration-700 group-hover:scale-110 group-hover:rotate-6 group-hover:text-indigo-500/5 pointer-events-none">
+                <div className="absolute -bottom-10 -right-10 text-slate-100 dark:text-slate-800 transition-all duration-700 group-hover:scale-110 group-hover:rotate-6 group-hover:text-emerald-500/5 pointer-events-none">
                   {data.bgIcon}
                 </div>
 
@@ -109,7 +109,7 @@ const Projects = () => {
                     {data.tags.map((tag, i) => (
                       <span 
                         key={i}
-                        className="rounded-full bg-indigo-50 dark:bg-indigo-500/10 px-3 py-1 text-[9px] font-black uppercase tracking-wider text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-500/20"
+                        className="rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1 text-[9px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20"
                       >
                         {tag}
                       </span>
@@ -126,7 +126,7 @@ const Projects = () => {
 
                   <a 
                     href="#" 
-                    className="group/link mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400"
+                    className="group/link mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400"
                   >
                     Explore Project
                     <ExternalLink size={14} className="transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
@@ -143,7 +143,7 @@ const Projects = () => {
           <div className="flex justify-center -mt-4">
              <div className="px-6 bg-slate-50 dark:bg-slate-950 flex gap-4 text-slate-300 dark:text-slate-700">
                 <Code2 className="size-6" />
-                <Terminal className="size-6" />
+                
              </div>
           </div>
         </div>

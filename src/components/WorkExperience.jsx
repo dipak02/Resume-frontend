@@ -50,7 +50,7 @@ const WorkExperience = () => {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden">
       
       {/* EXPERIENCE SECTION */}
-      <main className="max-w-6xl mx-auto px-4 py-12 md:py-16 space-y-12">
+      <main className="max-w-6xl mx-auto px-4   space-y-12">
         
         {/* Header Section */}
         <div id="experience" className="text-center space-y-3 animate-in fade-in slide-in-from-top-4 duration-700">
@@ -80,12 +80,20 @@ const WorkExperience = () => {
             ))}
           </div>
         </div>
-
+             <div className="pt-12 animate-in fade-in duration-1000">
+                      <hr className="border-slate-200 dark:border-slate-800" />
+                      <div className="flex justify-center -mt-4">
+                         <div className="px-6 bg-slate-50 dark:bg-slate-950 flex gap-4 text-slate-300 dark:text-slate-700">
+                            <Award className="size-6" />
+                            
+                         </div>
+                      </div>
+                    </div>
         {/* Decorative Divider */}
-        <div className="pt-10 flex flex-col items-center gap-3 opacity-20">
+        {/* <div className="pt-10 flex flex-col items-center gap-3 opacity-20">
            <div className="h-16 w-px bg-gradient-to-b from-emerald-800 to-transparent" />
            <Award className="text-emerald-800 dark:text-emerald-500" size={24} />
-        </div>
+        </div> */}
       </main>
     </div>
   );

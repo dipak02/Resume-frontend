@@ -109,21 +109,21 @@ const Faqs = () => {
 
           {/* Enquiry Form Side */}
           <div className="animate-in fade-in slide-in-from-right-8 duration-700 delay-300">
-            <div className="bg-emerald-900 dark:bg-emerald-950 rounded-[3rem] p-8 sm:p-12 shadow-2xl shadow-emerald-950/20 text-white relative overflow-hidden group">
+            <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950 dark:to-slate-900 rounded-[3rem] p-8 sm:p-12 shadow-2xl shadow-emerald-950/10 dark:shadow-emerald-950/30 relative overflow-hidden group transition-colors duration-500">
               {/* Decorative background element */}
-              <div className="absolute -bottom-10 -right-10 text-white opacity-5 group-hover:scale-110 transition-transform duration-700">
+              <div className="absolute -bottom-10 -right-10 text-emerald-900 dark:text-emerald-500 opacity-5 dark:opacity-10 group-hover:scale-110 transition-transform duration-700">
                 <HelpCircle size={240} />
               </div>
 
               <div className="relative z-10 space-y-8">
                 <div className="space-y-4">
-                  <div className="size-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center">
-                    <MailQuestion size={28} />
+                  <div className="size-14 rounded-2xl bg-emerald-200 dark:bg-emerald-900/50 backdrop-blur-md flex items-center justify-center">
+                    <MailQuestion size={28} className="text-emerald-900 dark:text-emerald-400" />
                   </div>
-                  <h3 className="text-3xl font-black uppercase tracking-tight leading-tight">
+                  <h3 className="text-3xl font-black uppercase tracking-tight leading-tight text-emerald-950 dark:text-white transition-colors">
                     Have a specific question?
                   </h3>
-                  <p className="text-emerald-100 font-medium">
+                  <p className="text-emerald-800 dark:text-emerald-200 font-medium transition-colors">
                     If you have any enquiry about a project or collaboration, feel free to ask. I'm here to help you navigate your digital journey.
                   </p>
                 </div>
@@ -133,21 +133,21 @@ const Faqs = () => {
                     <textarea 
                       rows="3" 
                       placeholder="Write your question here..."
-                      className="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 text-sm font-bold placeholder:text-emerald-200 text-white focus:ring-4 focus:ring-white/10 focus:border-white outline-none transition-all resize-none"
+                      className="w-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-emerald-200 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold placeholder:text-emerald-700 dark:placeholder:text-slate-400 text-emerald-950 dark:text-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 dark:focus:border-emerald-400 outline-none transition-all resize-none" 
                       required
                     ></textarea>
                   </div>
 
                   <button 
                     type="submit"
-                    className="w-full bg-white text-emerald-900 font-black uppercase tracking-[0.2em] text-xs py-5 rounded-2xl transition-all hover:bg-emerald-50 active:scale-95 flex items-center justify-center gap-3 shadow-xl"
+                    className="w-full bg-emerald-600 dark:bg-emerald-600 hover:bg-emerald-700 dark:hover:bg-emerald-500 text-white dark:text-white font-black uppercase tracking-[0.2em] text-xs py-5 rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-3 shadow-xl shadow-emerald-600/20"
                   >
                     Ask a Question
                     <Send size={16} />
                   </button>
                 </form>
 
-                <div className="flex items-center gap-2 pt-4 text-xs font-bold text-emerald-200">
+                <div className="flex items-center gap-2 pt-4 text-xs font-bold text-emerald-700 dark:text-emerald-300 transition-colors">
                   <Sparkles size={14} className="animate-pulse" />
                   <span>Personalized responses within 24 hours</span>
                 </div>

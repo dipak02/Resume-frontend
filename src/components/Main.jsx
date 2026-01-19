@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { 
   Sparkles,
   Download,
+  Layers,
   ArrowRight,
   Facebook,
   Instagram,
   Twitter,
   Github,
-  CheckCircle2
+  CheckCircle2,
+  BookUser
 } from 'lucide-react';
 import profile from '../assets/images/profile.jpg'
 
@@ -67,7 +69,7 @@ const TextType = ({ text, typingSpeed = 75, pauseDuration = 1500 }) => {
  */
 const Main = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden flex flex-col justify-center">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden flex flex-col justify-center">
       
       {/* HERO SECTION */}
       <section className="relative max-w-7xl mx-auto px-6 py-16 md:py-24">
@@ -100,28 +102,29 @@ const Main = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
-              <button className="group px-10 py-5 bg-emerald-800 hover:bg-emerald-900 text-white font-black uppercase tracking-widest text-xs rounded-3xl shadow-2xl shadow-emerald-900/30 transition-all active:scale-95 flex items-center gap-3">
+            <div className="flex flex-nowrap gap-2 md:gap-4 pt-4">
+              <button className="flex-1 group px-4 sm:px-10 py-5 bg-emerald-800 hover:bg-emerald-900 text-white font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-3xl shadow-2xl shadow-emerald-900/30 transition-all active:scale-95 flex items-center justify-center gap-3">
                 Hire Me <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="group px-10 py-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 font-black uppercase tracking-widest text-xs rounded-3xl shadow-sm hover:shadow-lg hover:border-emerald-800/30 transition-all active:scale-95 flex items-center gap-3">
+              
+              <button className="flex-1 group px-4 sm:px-10 py-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-3xl shadow-sm hover:shadow-lg hover:border-emerald-800/30 transition-all active:scale-95 flex items-center justify-center gap-3">
                 Resume <Download size={18} />
               </button>
             </div>
 
             {/* Social Connect */}
-            <div className="flex items-center gap-6 pt-6 opacity-60 hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-6 pt-6 opacity-100 hover:opacity-100 transition-opacity">
               <div className="flex gap-4">
-                <a href="#" className="p-2 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Facebook size={22} /></a>
-                <a href="#" className="p-2 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Instagram size={22} /></a>
-                <a href="#" className="p-2 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Twitter size={22} /></a>
-                <a href="#" className="p-2 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Github size={22} /></a>
+                <a href="#" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Facebook size={22} /></a>
+                <a href="#" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Instagram size={22} /></a>
+                <a href="#" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Twitter size={22} /></a>
+                <a href="#" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Github size={22} /></a>
               </div>
             </div>
           </div>
 
           {/* Irregular Dynamic Image Grid Right (5 Columns) */}
-          <div className="lg:col-span-5 relative animate-in fade-in zoom-in duration-1000 delay-200">
+          <div className=" hidden lg:block lg:col-span-5 relative animate-in fade-in zoom-in duration-1000 delay-200">
             {/* Dynamic Background Elements */}
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-700" />
@@ -166,6 +169,15 @@ const Main = () => {
           </div>
         </div>
       </section>
+      {/* Footer Divider */}
+        <div className=" animate-in fade-in duration-1000">
+          <hr className="px-12 border-slate-200 dark:border-slate-800" />
+          <div className="flex justify-center -mt-3">
+             <div className="px-4 bg-slate-50 dark:bg-slate-950">
+                <BookUser className="size-6 text-slate-300 dark:text-slate-700" />
+             </div>
+          </div>
+        </div>
 
       {/* Embedded Style for Blob Animation */}
       <style>{`
