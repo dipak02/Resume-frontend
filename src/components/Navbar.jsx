@@ -57,7 +57,7 @@ const App = () => {
             <div className="flex items-center gap-3 group cursor-pointer">
               <img src={profile} alt="Profile" className="w-auto h-12 border border-slate-200 dark:border-slate-700 rounded-full" />
               <span className={`text-sm font-black uppercase tracking-tighter ${isScrolled ? 'text-slate-900 dark:text-white' : 'text-white dark:text-emerald-100'}`}>
-                Dipak
+                Er. Dipak
               </span>
             </div>
 
