@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun, Send, ChevronRight, Hexagon } from 'lucide-react';
 import profile from '../assets/images/icon.png'
-
+import { useNavigate, useLocation } from "react-router-dom";
 
 /**
  * Navbar Component (Named 'App' as per environment requirements)
@@ -12,22 +12,12 @@ import profile from '../assets/images/icon.png'
  * - Lucide-React icons for modern UI
  */
 const App = () => {
-  const [isOpen, setIsOpen] = useState(false);
+   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
- 
+  const [activePage, setActivePage] = useState("Home");
 
-
-  // Logo fallback: Using an inline SVG icon since local assets aren't available in this environment
- 
-
-  // Handle scroll effect for glassmorphism
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -35,7 +25,59 @@ const App = () => {
     { name: "About Me", href: "#about" },
     { name: "Blog", href: "#blog" },
     { name: "Services", href: "#services" },
+    { name: "Contact", href: "#contact" },
   ];
+
+  // Update tab title on activePage change
+  useEffect(() => {
+    document.title = `${activePage} | Dipak Shah`;
+  }, [activePage]);
+
+  // Handle scroll for navbar glass effect
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll-spy: update activePage based on scroll position
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      let current = "Home";
+      navLinks.forEach((link) => {
+        const section = document.querySelector(link.href);
+        if (section) {
+          const top = section.getBoundingClientRect().top;
+          if (top <= 80) current = link.name; // 80px offset for navbar
+        }
+      });
+      setActivePage(current);
+    };
+    window.addEventListener("scroll", handleScrollSpy);
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, []);
+
+  const scrollToSection = (href) => {
+    const section = document.querySelector(href);
+    if (section) {
+      setTimeout(() => {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
+  };
+
+  const handleNavClick = (name, href) => {
+    setActivePage(name);
+
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => scrollToSection(href), 200);
+    } else {
+      scrollToSection(href);
+    }
+
+    setIsOpen(false); // close mobile menu
+  };
 
   return (
     
@@ -64,9 +106,9 @@ const App = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
+    onClick={() => handleNavClick(link.name, link.href)}
                   className={`px-5 py-2 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 hover:scale-105 ${
                     isScrolled 
                       ? 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-emerald-400 hover:bg-indigo-50 dark:hover:bg-emerald-500/10' 
@@ -74,7 +116,7 @@ const App = () => {
                   }`}
                 >
                   {link.name}
-                </a>
+                </button>
               ))}
             </div>
 
@@ -126,16 +168,16 @@ const App = () => {
                 
             >
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between p-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-transparent hover:border-emerald-500/20 dark:bg-slate-800/50 hover:dark:bg-emerald-500/10' : 'bg-slate-50 hover:bg-white'
+    onClick={() => handleNavClick(link.name, link.href)}
+                  
+                  className={`flex items-center justify-between p-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all text-slate-800 dark:text-white border border-transparent hover:border-emerald-500/20 dark:bg-slate-800/50 hover:dark:bg-emerald-500/10' : 'bg-slate-50 hover:bg-white'
                   }`}
                 >
                   {link.name}
                   <ChevronRight size={14} className="text-emerald-500" />
-                </a>
+                </button>
               ))}
               <div className="h-px w-full bg-slate-200 dark:bg-slate-800 my-2 opacity-50" />
               <button className="w-full flex items-center justify-center gap-2 bg-orange-500 text-white p-4 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-lg shadow-orange-500/20 active:scale-95 transition-transform">

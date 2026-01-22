@@ -8,16 +8,40 @@ import {
   CheckCircle2,
   Contact2
 } from 'lucide-react';
+import { useToast } from "../context/ToastContext";
 
 const Contact = () => {
+  const { showToast } = useToast();
   const [formState, setFormState] = useState('idle');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormState('sending');
-    setTimeout(() => setFormState('success'), 1500);
-    setTimeout(() => setFormState('idle'), 5000);
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setFormState("sending");
+
+  const formData = new FormData(e.target);
+
+  try {
+    const res = await fetch("https://server.dipakkumarshah.com.np/contact/submit/", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+    if (data.status === "success") {
+      setFormState("success");
+      e.target.reset();
+      setTimeout(() => setFormState("idle"), 5000);
+    } else {
+      setFormState("idle");
+      showToast("Something went wrong", "error");
+    }
+  } catch (error) {
+    console.error(error);
+    setFormState("idle");
+    showToast("Failed to send message", "error");
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-6 md:p-12 lg:p-20">
@@ -102,7 +126,8 @@ const Contact = () => {
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Full Name</label>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="full_name" 
                     placeholder="Enter your name"
                     className="w-full bg-white/80 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all dark:text-white" 
                     required
@@ -113,6 +138,7 @@ const Contact = () => {
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Email Address</label>
                   <input 
                     type="email" 
+                    name="email"
                     placeholder="you@example.com"
                     className="w-full bg-white/80 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all dark:text-white" 
                     required
@@ -122,6 +148,7 @@ const Contact = () => {
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Your Message</label>
                   <textarea 
+                    name="message"
                     rows="4" 
                     placeholder="Tell me about your project..."
                     className="w-full bg-white/80 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all dark:text-white resize-none" 

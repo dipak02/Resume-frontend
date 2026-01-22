@@ -8,6 +8,7 @@ import {
   ChevronRight,
   BookOpenText
 } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 /**
  * Blog Component (Named 'Blog' for environment compatibility)
@@ -111,11 +112,11 @@ const Blog = () => {
                   </div>
 
                   {/* Title */}
-                  <a href="#" className="block group/title">
+                  <Link to="/blog-page" className="block group/title">
                     <h3 className="text-xl font-black text-white leading-tight transition-colors group-hover/title:text-emerald-400">
                       {data.title}
                     </h3>
-                  </a>
+                  </Link>
 
                   {/* Details (Expands slightly on hover) */}
                   <p className="text-sm text-slate-300 font-medium line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
@@ -126,12 +127,12 @@ const Blog = () => {
                 {/* Footer Link */}
                 <div className="pt-2">
                   <div className="h-1 w-12 bg-emerald-600 rounded-full group-hover:w-full transition-all duration-700" />
-                  <a 
-                    href="#" 
+                  <Link 
+                    to="/blog-page"
                     className="mt-4 inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                   >
                     Read Full Article <Sparkles size={12} className="text-emerald-400" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </article>

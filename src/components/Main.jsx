@@ -104,11 +104,11 @@ const Main = () => {
             {/* CTA Buttons */}
             <div className="flex flex-nowrap gap-2 md:gap-4 pt-4">
               <button className="flex-1 group px-4 sm:px-10 py-5 bg-emerald-800 hover:bg-emerald-900 text-white font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-3xl shadow-2xl shadow-emerald-900/30 transition-all active:scale-95 flex items-center justify-center gap-3">
-                Hire Me <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+               <a href="#contact">Hire Me</a> <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
               
-              <button className="flex-1 group px-4 sm:px-10 py-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-3xl shadow-sm hover:shadow-lg hover:border-emerald-800/30 transition-all active:scale-95 flex items-center justify-center gap-3">
-                Resume <Download size={18} />
+              <button className="flex-1 group px-4 sm:px-10 py-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-3xl shadow-sm hover:shadow-lg hover:bg-emerald-200 hover:border-emerald-800/30 transition-all active:scale-95 flex items-center justify-center gap-3">
+                 <a href="/resume.pdf" download="Dipak_Shah_Resume.pdf">Resume</a> <Download size={18} />
               </button>
             </div>
 
