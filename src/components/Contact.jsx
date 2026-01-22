@@ -21,7 +21,7 @@ const Contact = () => {
   const formData = new FormData(e.target);
 
   try {
-    const res = await fetch("https://server.dipakkumarshah.com.np/contact/submit/", {
+    const res = await fetch("https://www.server.dipakkumarshah.com.np/contact/submit/", {
       method: "POST",
       body: formData
     });
