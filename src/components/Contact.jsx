@@ -26,14 +26,13 @@ const Contact = () => {
       body: formData
     });
 
-    const data = await res.json();
-    if (data.status === "success") {
-      setFormState("success");
+     if (response.ok) {
+      setFormState('success');
+      showToast('Message sent successfully!', 'success');
       e.target.reset();
-      setTimeout(() => setFormState("idle"), 5000);
     } else {
-      setFormState("idle");
-      showToast("Something went wrong", "error");
+      setFormState('idle');
+      showToast('Failed to send message.', 'error');
     }
   } catch (error) {
     console.error(error);
