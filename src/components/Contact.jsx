@@ -9,37 +9,51 @@ import {
   Contact2
 } from 'lucide-react';
 import { useToast } from "../context/ToastContext";
+import axios from "axios";
 
 const Contact = () => {
   const { showToast } = useToast();
   const [formState, setFormState] = useState('idle');
 
- const handleSubmit = async (e) => {
+
+
+
+
+
+const handleSubmit = async (e) => {
   e.preventDefault();
   setFormState("sending");
 
-  const formData = new FormData(e.target);
+  const form = e.currentTarget;
+  const formData = new FormData(form);
 
   try {
-    const res = await fetch("https://www.server.dipakkumarshah.com.np/contact/submit/", {
-      method: "POST",
-      body: formData
-    });
+    const res = await axios.post(
+      "https://www.server.dipakkumarshah.com.np/contact/submit/",
+      formData
+    );
 
-     if (response.ok) {
-      setFormState('success');
-      showToast('Message sent successfully!', 'success');
-      e.target.reset();
-    } else {
-      setFormState('idle');
-      showToast('Failed to send message.', 'error');
+    // ✅ check HTTP status OR message
+    if (res.status === 201) {
+      setFormState("success");
+      showToast("Message sent! I'll get back to you soon.", "success");
+      form.reset();
+      setTimeout(() => setFormState("idle"), 5000);
     }
+
   } catch (error) {
-    console.error(error);
     setFormState("idle");
-    showToast("Failed to send message", "error");
+    console.error(error);
+
+    const errMsg =
+      error.response?.data?.message ||
+      error.response?.data ||
+      "Something went wrong";
+
+    showToast(errMsg, "error");
   }
 };
+
 
 
   return (
@@ -126,7 +140,7 @@ const Contact = () => {
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Full Name</label>
                   <input 
                     type="text"
-                    name="full_name" 
+                    name="name" 
                     placeholder="Enter your name"
                     className="w-full bg-white/80 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all dark:text-white" 
                     required
@@ -139,6 +153,17 @@ const Contact = () => {
                     type="email" 
                     name="email"
                     placeholder="you@example.com"
+                    className="w-full bg-white/80 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all dark:text-white" 
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Full Name</label>
+                  <input 
+                    type="text"
+                    name="subject" 
+                    placeholder="Enter subject"
                     className="w-full bg-white/80 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all dark:text-white" 
                     required
                   />
