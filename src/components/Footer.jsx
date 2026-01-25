@@ -44,11 +44,11 @@ const Footer = () => {
           <div className="flex items-center gap-3 order-1 md:order-2">
             <div className="h-px w-8 bg-emerald-300 dark:bg-slate-700 hidden lg:block transition-colors" />
             <div className="flex items-center gap-1.5 bg-emerald-100 dark:bg-slate-900/50 p-1.5 rounded-2xl border border-emerald-200 dark:border-slate-800 backdrop-blur-sm transition-colors">
-              <SocialLink icon={<Facebook size={16} />} href="#" label="Facebook" />
-              <SocialLink icon={<Instagram size={16} />} href="#" label="Instagram" />
-              <SocialLink icon={<Twitter size={16} />} href="#" label="Twitter" />
-              <SocialLink icon={<Github size={16} />} href="#" label="GitHub" />
-              <SocialLink icon={<Linkedin size={16} />} href="#" label="LinkedIn" />
+              <SocialLink icon={<Facebook size={16} />} href="https://www.facebook.com/profile.php?id=61580664927776" label="Facebook" />
+              <SocialLink icon={<Instagram size={16} />} href="https://www.instagram.com/techie.dipak/" label="Instagram" />
+              <SocialLink icon={<Twitter size={16} />} href="https://x.com/dipakshah56" label="Twitter" />
+              <SocialLink icon={<Github size={16} />} href="https://github.com/dipak02" label="GitHub" />
+              <SocialLink icon={<Linkedin size={16} />} href="https://www.linkedin.com/in/dipakkumarshah" label="LinkedIn" />
             </div>
           </div>
 

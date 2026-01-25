@@ -8,6 +8,7 @@ import {
   Instagram,
   Twitter,
   Github,
+  Linkedin,
   CheckCircle2,
   BookUser
 } from 'lucide-react';
@@ -115,10 +116,11 @@ const Main = () => {
             {/* Social Connect */}
             <div className="flex items-center gap-6 pt-6 opacity-100 hover:opacity-100 transition-opacity">
               <div className="flex gap-4">
-                <a href="#" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Facebook size={22} /></a>
-                <a href="#" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Instagram size={22} /></a>
-                <a href="#" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Twitter size={22} /></a>
-                <a href="#" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Github size={22} /></a>
+                <a href="https://www.facebook.com/profile.php?id=61580664927776" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Facebook size={22} /></a>
+                <a href="https://www.instagram.com/techie.dipak/" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Instagram size={22} /></a>
+                <a href="https://x.com/dipakshah56" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Twitter size={22} /></a>
+                <a href="https://github.com/dipak02" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Github size={22} /></a>
+                <a href="https://www.linkedin.com/in/dipakkumarshah" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Linkedin size={22} /></a>
               </div>
             </div>
           </div>
