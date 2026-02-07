@@ -23,7 +23,7 @@ const App = () => {
     { name: "Home", href: "#home" },
     { name: "Projects", href: "#projects" },
     { name: "About Me", href: "#about" },
-    { name: "Blog", href: "#blog" },
+    { name: "Blog", href: "https://blog.dipakkumarshah.com.np/" },
     { name: "Services", href: "#services" },
     { name: "Contact", href: "#contact" },
   ];
@@ -68,6 +68,13 @@ const App = () => {
 
   const handleNavClick = (name, href) => {
     setActivePage(name);
+
+    // Check if it's an external link
+  if (href.startsWith("http")) {
+    window.open(href, "_blank"); // open in new tab
+    setIsOpen(false); // close mobile menu
+    return;
+  }
 
     if (location.pathname !== "/") {
       navigate("/");

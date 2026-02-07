@@ -8,13 +8,13 @@ import Main from './components/Main'
 import Tools from './components/Tools'
 import Services from './components/Services'
 import Project from './components/Project'
-import Blog from './components/Blog'
+// import Blog from './components/Blog'
 import Contact from './components/Contact'
 import Faqs from './components/Faqs'
 import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
 import WorkExperience from './components/WorkExperience'
-import BlogDetailPage from './components/BlogDetailPage';
+// import BlogDetailPage from './components/BlogDetailPage';
 
 function App() {
   return (
@@ -36,14 +36,14 @@ function App() {
       <Project />
       <Contact />
       <Testimonials />
-      <Blog />
+     
       <Faqs />
       
     </div>
   } 
 />
 
-        <Route path='/blog-page' element={<BlogDetailPage />} />
+        
       </Routes>
       <Footer />
     </>

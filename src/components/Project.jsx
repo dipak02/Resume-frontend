@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { 
   ExternalLink, 
   Github, 
@@ -10,6 +10,8 @@ import {
   Code2,
   Terminal
 } from 'lucide-react';
+import axios from 'axios'
+import { PROJECT_API } from "../config";
 
 /**
  * Projects Component (Named 'Projects' for environment compatibility)
@@ -21,40 +23,47 @@ import {
  * - Interactive hover effects with image scaling and elevation
  */
 const Projects = () => {
-  const projectData = [
-    {
-      img: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop",
-      bgIcon: <Layout className="size-48" />,
-      title: "Blog Website",
-      detail: "Blog website built with React JS, Tailwind CSS, and Django to share articles and tutorials on web development.",
-      tags: ['React JS', 'Tailwind', 'Django'],
-      accent: "purple"
-    },
-    {
-      img: "https://images.unsplash.com/photo-1456324504439-39775ffcf141?q=80&w=800&auto=format&fit=crop",
-      bgIcon: <FileText className="size-48" />,
-      title: "E Notes Library",
-      detail: "E-Notes library website where users can create, manage, and share their notes seamlessly with full cloud synchronization.",
-      tags: ['React JS', 'Tailwind', 'Django'],
-      accent: "indigo"
-    },
-    {
-      img: "https://images.unsplash.com/photo-1523050337458-568375351822?q=80&w=800&auto=format&fit=crop",
-      bgIcon: <School className="size-48" />,
-      title: "University System",
-      detail: "University Management System to manage student data, courses, and grades efficiently with an administrative dashboard.",
-      tags: ['React JS', 'Tailwind', 'Django'],
-      accent: "blue"
-    },
-    {
-      img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=800&auto=format&fit=crop",
-      bgIcon: <ShoppingCart className="size-48" />,
-      title: "E-Commerce Hub",
-      detail: "Full-stack E-Commerce website to facilitate online shopping, product management, and secure checkout processes.",
-      tags: ['React JS', 'Tailwind', 'Django'],
-      accent: "emerald"
-    },
-  ];
+   const [projects, setProjects] = useState([]);
+     useEffect(() => {
+    axios.get(PROJECT_API.PROJECT)  // match your Django URL
+      .then(res => setProjects(res.data))
+      .catch(err => console.log(err));
+  }, []);
+  
+  // const projectData = [
+  //   {
+  //     img: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop",
+  //     bgIcon: <Layout className="size-48" />,
+  //     title: "Blog Website",
+  //     detail: "Blog website built with React JS, Tailwind CSS, and Django to share articles and tutorials on web development.",
+  //     tags: ['React JS', 'Tailwind', 'Django'],
+  //     accent: "purple"
+  //   },
+  //   {
+  //     img: "https://images.unsplash.com/photo-1456324504439-39775ffcf141?q=80&w=800&auto=format&fit=crop",
+  //     bgIcon: <FileText className="size-48" />,
+  //     title: "E Notes Library",
+  //     detail: "E-Notes library website where users can create, manage, and share their notes seamlessly with full cloud synchronization.",
+  //     tags: ['React JS', 'Tailwind', 'Django'],
+  //     accent: "indigo"
+  //   },
+  //   {
+  //     img: "https://images.unsplash.com/photo-1523050337458-568375351822?q=80&w=800&auto=format&fit=crop",
+  //     bgIcon: <School className="size-48" />,
+  //     title: "University System",
+  //     detail: "University Management System to manage student data, courses, and grades efficiently with an administrative dashboard.",
+  //     tags: ['React JS', 'Tailwind', 'Django'],
+  //     accent: "blue"
+  //   },
+  //   {
+  //     img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=800&auto=format&fit=crop",
+  //     bgIcon: <ShoppingCart className="size-48" />,
+  //     title: "E-Commerce Hub",
+  //     detail: "Full-stack E-Commerce website to facilitate online shopping, product management, and secure checkout processes.",
+  //     tags: ['React JS', 'Tailwind', 'Django'],
+  //     accent: "emerald"
+  //   },
+  // ];
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 px-4">
@@ -75,7 +84,7 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projectData.map((data, index) => (
+          {projects.map((data, index) => (
             <article 
               key={index}
               style={{ animationDelay: `${index * 150}ms` }}
@@ -86,7 +95,7 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-emerald-600/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                 <img
                   alt={data.title}
-                  src={data.img}
+                  src={data.image_url}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 right-4 z-20 flex gap-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
@@ -106,7 +115,7 @@ const Projects = () => {
                 <div className="relative z-10 space-y-4">
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-2">
-                    {data.tags.map((tag, i) => (
+                    {Array.isArray(data.tech_tags) && data.tech_tags.map((tag, i) => (
                       <span 
                         key={i}
                         className="rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1 text-[9px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20"
@@ -121,11 +130,11 @@ const Projects = () => {
                   </h3>
 
                   <p className="text-xs/relaxed text-slate-500 dark:text-slate-400 font-medium line-clamp-3">
-                    {data.detail}
+                    {data.description}
                   </p>
 
                   <a 
-                    href="#" 
+                    href={data.external_link} target="_blank" rel="noopener noreferrer"
                     className="group/link mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400"
                   >
                     Explore Project

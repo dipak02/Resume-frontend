@@ -10,6 +10,8 @@ import {
   ChevronRight,
   MessageSquareQuote
 } from 'lucide-react';
+import axios from 'axios'
+import { TESTIMONIAL_API } from "../config";
 
 /**
  * Testimonials Component (Named 'App' for environment compatibility)
@@ -23,6 +25,7 @@ const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [testimonials, setTestimonials] = useState([]);
 
   // Responsive check for slidesPerView
   useEffect(() => {
@@ -34,44 +37,49 @@ const Testimonials = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const testimonialsData = [
-    {
-      id: 1,
-      name: "John Doe",
-      image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=1180&q=80",
-      comment: "Dipak's ability to translate complex requirements into a clean, functional UI is unmatched. The Django backend integration was seamless.",
-      date: "31/06/2025",
-      topic: "Full-Stack Development Review",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1180&q=80",
-      comment: "The E-Notes library he built for us has transformed how our team manages documentation. Highly recommend for React projects.",
-      date: "15/07/2025",
-      topic: "Cloud Application Success",
-    },
-    {
-      id: 3,
-      name: "Alice Johnson",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=1180&q=80",
-      comment: "Incredible attention to detail in graphic design. Our branding now feels modern and unforgettable thanks to his creative vision.",
-      date: "20/08/2025",
-      topic: "Branding & Identity Project",
-    },
-    {
-      id: 4,
-      name: "Michael Chen",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=1180&q=80",
-      comment: "The University Management system is robust and handles thousands of student records without a hitch. Professional work!",
-      date: "05/09/2025",
-      topic: "System Architecture Feedback",
-    },
-  ];
+    useEffect(() => {
+    axios.get("https://dipak02-portfolio.hf.space/testimonial/testimonials/") // Django endpoint
+      .then(res => setTestimonials(res.data))
+      .catch(err => console.log(err));
+  }, []);
+  // const testimonialsData = [
+  //   {
+  //     id: 1,
+  //     name: "John Doe",
+  //     image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=1180&q=80",
+  //     comment: "Dipak's ability to translate complex requirements into a clean, functional UI is unmatched. The Django backend integration was seamless.",
+  //     date: "31/06/2025",
+  //     topic: "Full-Stack Development Review",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Jane Smith",
+  //     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1180&q=80",
+  //     comment: "The E-Notes library he built for us has transformed how our team manages documentation. Highly recommend for React projects.",
+  //     date: "15/07/2025",
+  //     topic: "Cloud Application Success",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Alice Johnson",
+  //     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=1180&q=80",
+  //     comment: "Incredible attention to detail in graphic design. Our branding now feels modern and unforgettable thanks to his creative vision.",
+  //     date: "20/08/2025",
+  //     topic: "Branding & Identity Project",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Michael Chen",
+  //     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=1180&q=80",
+  //     comment: "The University Management system is robust and handles thousands of student records without a hitch. Professional work!",
+  //     date: "05/09/2025",
+  //     topic: "System Architecture Feedback",
+  //   },
+  // ];
 
   const slidesPerView = isMobile ? 1 : 2;
   // We limit the active index so we don't show empty space at the end on desktop
-  const maxIndex = testimonialsData.length - slidesPerView;
+  const maxIndex = testimonials.length - slidesPerView;
 
   const nextSlide = useCallback(() => {
     setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
@@ -123,7 +131,7 @@ const Testimonials = () => {
               className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${activeIndex * (100 / slidesPerView)}%)` }}
             >
-              {testimonialsData.map((data) => (
+              {testimonials.map((data) => (
                 <div key={data.id} className={`shrink-0 px-4 ${isMobile ? 'w-full' : 'w-1/2'}`}>
                   <div className="h-full flex flex-col gap-6 items-center rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/10 group">
                     
@@ -133,7 +141,7 @@ const Testimonials = () => {
                         <div className="absolute -inset-1 bg-emerald-500 rounded-2xl blur opacity-10 group-hover:opacity-30 transition-opacity" />
                         <img
                           alt={data.name}
-                          src={data.image}
+                          src={data.image_url}
                           className="relative size-20 rounded-2xl object-cover border-2 border-white dark:border-slate-800 shadow-lg"
                         />
                       </div>
@@ -191,7 +199,7 @@ const Testimonials = () => {
 
           {/* Pagination Indicators */}
           <div className="flex justify-center gap-3 mt-8">
-            {Array.from({ length: testimonialsData.length - (slidesPerView - 1) }).map((_, i) => (
+            {Array.from({ length: testimonials.length - (slidesPerView - 1) }).map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}

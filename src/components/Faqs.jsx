@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { 
   Plus, 
   Minus, 
@@ -9,7 +9,8 @@ import {
   ChevronDown,
   MailQuestion
 } from 'lucide-react';
-
+import axios from 'axios'
+import { FAQS_API } from "../config";
 /**
  * FAQ Component (Named 'App' for environment compatibility)
  * Features:
@@ -22,28 +23,52 @@ import {
  */
 const Faqs = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const [faqData, setFaqData] = useState([]);
+  const [email, setEmail] = useState('');
+  const [question, setQuestion] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
-  const faqData = [
-    {
-      question: "What services do you provide?",
-      answer: "We provide full-stack web development services using Django (backend) and React (frontend), along with professional UI/UX design and reliable deployment support for modern digital products."
-    },
-    {
-      question: "How can I contact you?",
-      answer: "You can reach us via our contact page, or email directly at shahdipak5654@gmail.com. We typically respond within 24 hours."
-    },
-    {
-      question: "Do you offer project customization?",
-      answer: "Yes, we tailor every project based on client requirements. Whether it’s high-traffic e-commerce, a complex blog engine, or a custom web app, we build it to scale."
-    },
-    {
-      question: "Do you provide ongoing support?",
-      answer: "Absolutely! We provide maintenance, regular updates, and critical bug fixes after project delivery to ensure your product stays healthy and secure."
-    }
-  ];
+  // const faqData = [
+  //   {
+  //     question: "What services do you provide?",
+  //     answer: "We provide full-stack web development services using Django (backend) and React (frontend), along with professional UI/UX design and reliable deployment support for modern digital products."
+  //   },
+  //   {
+  //     question: "How can I contact you?",
+  //     answer: "You can reach us via our contact page, or email directly at shahdipak5654@gmail.com. We typically respond within 24 hours."
+  //   },
+  //   {
+  //     question: "Do you offer project customization?",
+  //     answer: "Yes, we tailor every project based on client requirements. Whether it’s high-traffic e-commerce, a complex blog engine, or a custom web app, we build it to scale."
+  //   },
+  //   {
+  //     question: "Do you provide ongoing support?",
+  //     answer: "Absolutely! We provide maintenance, regular updates, and critical bug fixes after project delivery to ensure your product stays healthy and secure."
+  //   }
+  // ];
+   // Fetch only answered FAQs
+  useEffect(() => {
+    axios.get(FAQS_API.FAQS)
+      .then(res => setFaqData(res.data))
+      .catch(err => console.error(err));
+  }, []);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
+  };
+
+   const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(FAQS_API.ASK, { email, question });
+      setSuccessMsg("Your question has been submitted! You'll receive a response soon.");
+      setEmail('');
+      setQuestion('');
+      setTimeout(() => setSuccessMsg(''), 5000); // clear message after 5 sec
+    } catch (error) {
+      console.error(error);
+      setSuccessMsg("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -67,7 +92,7 @@ const Faqs = () => {
           
           {/* FAQ Accordion Side */}
           <div className="space-y-4 animate-in fade-in slide-in-from-left-8 duration-700 delay-200">
-            {faqData.map((faq, index) => (
+            { faqData.length > 0 ? faqData.map((faq, index) => (
               <div 
                 key={index}
                 className={`overflow-hidden rounded-[2rem] border transition-all duration-300 ${
@@ -104,7 +129,9 @@ const Faqs = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            )) : (
+              <p className="text-center text-slate-500 dark:text-slate-400">No FAQs available yet.</p>
+            )} 
           </div>
 
           {/* Enquiry Form Side */}
@@ -128,10 +155,26 @@ const Faqs = () => {
                   </p>
                 </div>
 
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                  {successMsg && (
+                  <div className="p-4 bg-emerald-100 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-200 rounded-xl font-bold">
+                    {successMsg}
+                  </div>
+                )}
+
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <input 
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your Email"
+                    className="w-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-emerald-200 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold placeholder:text-emerald-700 dark:placeholder:text-slate-400 text-emerald-950 dark:text-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 dark:focus:border-emerald-400 outline-none transition-all"
+                    required 
+                  />
                   <div className="space-y-2">
                     <textarea 
                       rows="3" 
+                      value={question}
+                    onChange={(e) => setQuestion(e.target.value)}
                       placeholder="Write your question here..."
                       className="w-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-emerald-200 dark:border-slate-700 rounded-2xl px-6 py-4 text-sm font-bold placeholder:text-emerald-700 dark:placeholder:text-slate-400 text-emerald-950 dark:text-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 dark:focus:border-emerald-400 outline-none transition-all resize-none" 
                       required

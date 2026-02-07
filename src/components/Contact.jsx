@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useToast } from "../context/ToastContext";
 import axios from "axios";
+import { CONTACT_API } from "../config";
 
 const Contact = () => {
   const { showToast } = useToast();
@@ -29,7 +30,7 @@ const handleSubmit = async (e) => {
 
   try {
     const res = await axios.post(
-      "https://www.server.dipakkumarshah.com.np/contact/submit/",
+      CONTACT_API.SUBMIT,
       formData
     );
 
@@ -159,7 +160,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Full Name</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-600 ml-1">Subject</label>
                   <input 
                     type="text"
                     name="subject" 

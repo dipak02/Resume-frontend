@@ -8,6 +8,8 @@ import {
   Palette,
   ChevronRight
 } from 'lucide-react';
+import axios from 'axios'
+import { EXPERIENCE_API } from "../config";
 
 /**
  * Work Experience Timeline Component (Named 'WorkExperience' for environment compatibility)
@@ -19,32 +21,77 @@ import {
  * - Primary Color: Dark Green (Emerald 900)
  */
 const WorkExperience = () => {
-  const experienceData = [
+  const [experienceData, setExperienceData] = useState([]);
+ 
+
+const fallbackData = [
     {
       year: "2024 – Present",
       title: "Full Stack Developer (Freelance)",
       org: "Remote Collaboration",
-      description: "Developing robust web applications using the MERN stack and Django, focusing on scalable architecture, secure APIs, and user-centric design patterns.",
-      icon: <Code2 size={20} />,
-      bgIcon: <Code2 size={180} />
+      description:
+        "Developing robust web applications using the MERN stack and Django, focusing on scalable architecture, secure APIs, and user-centric design patterns.",
+      icon: "Code2",
+      link: "https://example.com"
     },
     {
       year: "2023 – 2024",
       title: "Graphic Design Intern",
       org: "Creative Studio",
-      description: "Assisted in creating branding materials, high-fidelity social media assets, and interactive UI components for various international client projects.",
-      icon: <Palette size={20} />,
-      bgIcon: <Palette size={180} />
+      description:
+        "Assisted in creating branding materials, high-fidelity social media assets, and interactive UI components for various international client projects.",
+      icon: "Palette",
+      link: "https://example.com"
     },
     {
       year: "2022",
       title: "Web Development Trainee",
       org: "Tech Hub Academy",
-      description: "Underwent intensive training on modern frontend technologies, mastering responsive design principles and complex JavaScript framework ecosystems.",
-      icon: <Briefcase size={20} />,
-      bgIcon: <Briefcase size={180} />
+      description:
+        "Underwent intensive training on modern frontend technologies, mastering responsive design principles and complex JavaScript framework ecosystems.",
+      icon: "Briefcase",
+      link: "https://example.com"
     }
   ];
+ useEffect(() => {
+    axios
+      .get(EXPERIENCE_API.WORK)
+      .then((res) => {
+        setExperienceData(res.data?.length ? res.data : fallbackData);
+      })
+      .catch(() => {
+        setExperienceData(fallbackData);
+      });
+  }, []);
+  // const experienceData = [
+  //   {
+  //     year: "2024 – Present",
+  //     title: "Full Stack Developer (Freelance)",
+  //     org: "Remote Collaboration",
+  //     description: "Developing robust web applications using the MERN stack and Django, focusing on scalable architecture, secure APIs, and user-centric design patterns.",
+  //     icon: <Code2 size={20} />,
+  //     bgIcon: <Code2 size={180} />
+  //   },
+  //   {
+  //     year: "2023 – 2024",
+  //     title: "Graphic Design Intern",
+  //     org: "Creative Studio",
+  //     description: "Assisted in creating branding materials, high-fidelity social media assets, and interactive UI components for various international client projects.",
+  //     icon: <Palette size={20} />,
+  //     bgIcon: <Palette size={180} />
+  //   },
+  //   {
+  //     year: "2022",
+  //     title: "Web Development Trainee",
+  //     org: "Tech Hub Academy",
+  //     description: "Underwent intensive training on modern frontend technologies, mastering responsive design principles and complex JavaScript framework ecosystems.",
+  //     icon: <Briefcase size={20} />,
+  //     bgIcon: <Briefcase size={180} />
+  //   }
+  // ];
+
+
+
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden">
@@ -105,7 +152,11 @@ const WorkExperience = () => {
 const TimelineCard = ({ data, isRight }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef(null);
-
+   const iconMap = {
+  Code2: <Code2 size={20} />,
+  Palette: <Palette size={20} />,
+  Briefcase: <Briefcase size={20} />,
+};
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -134,7 +185,7 @@ const TimelineCard = ({ data, isRight }) => {
         <div className={`p-3 rounded-xl shadow-xl transition-all duration-700 bg-emerald-700 dark:bg-emerald-600 text-white ${
           isVisible ? 'scale-100 rotate-0 shadow-emerald-900/30' : 'scale-0 rotate-180'
         }`}>
-          {data.icon}
+          {iconMap[data.icon]}
         </div>
       </div>
 
@@ -144,7 +195,7 @@ const TimelineCard = ({ data, isRight }) => {
           
           {/* Subtle Background Icon Decoration */}
           <div className={`absolute -bottom-8 ${isRight ? '-right-8' : '-left-8'} text-slate-100 dark:text-slate-800/30 transition-all duration-1000 group-hover:scale-105 group-hover:text-emerald-500/5 pointer-events-none z-0`}>
-            {data.bgIcon}
+            {iconMap[data.icon]}
           </div>
 
           <div className="relative z-10">
