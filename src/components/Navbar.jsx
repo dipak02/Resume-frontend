@@ -97,7 +97,7 @@ const App = () => {
           className={`relative max-w-7xl mx-auto transition-all duration-500 rounded-[2.5rem] border ${
             isScrolled 
               ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-2xl border-white/20 dark:border-slate-800' 
-              : 'bg-emerald-800 dark:bg-indigo-950 border-transparent shadow-lg'
+              : 'bg-[#073224] dark:bg-[#073224] border-transparent shadow-lg'
           }`}
         >
           <div className="px-6 py-4 flex items-center justify-between">

@@ -1,195 +1,163 @@
-import React, { useState, useEffect } from "react";
-import { 
-  Sparkles,
-  Download,
-  Layers,
-  ArrowRight,
-  Facebook,
-  Instagram,
-  Twitter,
-  Github,
-  Linkedin,
-  CheckCircle2,
-  BookUser
-} from 'lucide-react';
-import profile from '../assets/images/profile.jpg'
+import React, { useState, useEffect } from 'react';
+import { Github, Linkedin, Twitter, Instagram, Facebook } from 'lucide-react';
+import profile from "../assets/images/herosection.png";
 
-/**
- * TextTyper Component
- * Animates text typing and deleting effects.
- */
-const TextType = ({ text, typingSpeed = 75, pauseDuration = 1500 }) => {
-  const [currentText, setCurrentText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [delta, setDelta] = useState(typingSpeed);
+export default function App() {
+  // State for dynamic background titles
+  const [titles] = useState(['Dipak Kr. Shah', 'Web Developer', 'Web Designer', 'IT Engineer']);
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [fadeState, setFadeState] = useState('fade-in');
 
+  // Title rotation logic
   useEffect(() => {
-    let ticker = setInterval(() => {
-      tick();
-    }, delta);
+    const interval = setInterval(() => {
+      setFadeState('fade-out');
+      setTimeout(() => {
+        setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
+        setFadeState('fade-in');
+      }, 500);
+    }, 4000);
 
-    return () => clearInterval(ticker);
-  }, [currentText, delta]);
-
-  const tick = () => {
-    let i = loopNum % text.length;
-    let fullText = text[i];
-    let updatedText = isDeleting 
-      ? fullText.substring(0, currentText.length - 1) 
-      : fullText.substring(0, currentText.length + 1);
-
-    setCurrentText(updatedText);
-
-    if (isDeleting) {
-      setDelta(prevDelta => prevDelta / 1.5);
-    }
-
-    if (!isDeleting && updatedText === fullText) {
-      setIsDeleting(true);
-      setDelta(pauseDuration);
-    } else if (isDeleting && updatedText === "") {
-      setIsDeleting(false);
-      setLoopNum(loopNum + 1);
-      setDelta(typingSpeed);
-    }
-  };
+    return () => clearInterval(interval);
+  }, [titles]);
 
   return (
-    <span className="text-emerald-600 dark:text-emerald-400">
-      {currentText}
-      <span className="animate-pulse ml-1 font-light">|</span>
-    </span>
-  );
-};
-
-/**
- * Main Main Component
- * Focuses exclusively on a high-fidelity Hero section.
- * Featuring an irregular shaped image container without formal borders.
- */
-const Main = () => {
-  return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden flex flex-col justify-center">
+    <div className="min-h-screen bg-[#073224] text-white font-sans flex items-center justify-center overflow-hidden relative selection:bg-[#db4b7d] selection:text-white py-12 px-4 sm:px-6 md:px-16">
       
-      {/* HERO SECTION */}
-      <section className="relative max-w-7xl mx-auto px-6 py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      {/* Dynamic Massive Background Text for desktop */}
+      <div className="hidden lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center pointer-events-none select-none z-0 overflow-hidden">
+        <h1 
+          className={`text-[14vw] sm:text-[12vw] md:text-[10vw] lg:text-[8vw] xl:text-[7vw] font-black tracking-tight text-emerald-300/20 leading-none whitespace-nowrap uppercase max-w-[95vw] transition-all duration-500 ease-in-out ${
+            fadeState === 'fade-in' 
+              ? 'opacity-100 scale-100 filter blur-0' 
+              : 'opacity-0 scale-95 filter blur-sm'
+          }`}
+        >
+          {titles[currentTitleIndex]}
+        </h1>
+      </div>
+
+      {/* HERO CONTAINER */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-4">
           
-          {/* Content Left (7 Columns) */}
-          <div className="lg:col-span-7 space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-400 text-xs font-bold border border-emerald-100 dark:border-emerald-800/50">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          {/* LEFT SIDE: Heading & Description */}
+          <div className="lg:col-span-4 flex flex-col justify-center text-left space-y-6 max-w-xl mx-auto lg:mx-0 z-10 order-2 lg:order-1">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+              <span className="block sm:whitespace-nowrap">Building <span className="relative inline-block text-white">
+                Digital
+                {/* Custom Hand-drawn yellow underline matching the image */}
+                <span className="absolute left-0 bottom-[-6px] w-full h-3 flex items-center">
+                  <svg viewBox="0 0 100 10" preserveAspectRatio="none" className="w-full h-full text-[#fabc2c] fill-current">
+                    <path d="M0,5 Q50,0 100,5 T200,5 L200,8 Q100,3 0,8 Z" />
+                  </svg>
                 </span>
-                Available for new projects
-              </div>
+              </span></span>
               
-              <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white leading-[1.05] tracking-tight uppercase">
-                Building <br /> 
-                <span className="text-emerald-800 dark:text-emerald-500">Digital</span> <br />
-                Experiences
-              </h1>
-
-              <div className="text-xl md:text-2xl font-bold text-slate-700 dark:text-slate-300">
-                Hi, I'm <TextType text={["Dipak Kumar Shah", "Web Developer", "Graphic Designer"]} />
-              </div>
-
-              <p className="text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-xl font-medium">
-                I craft modern, responsive, and user-friendly websites that combine clean design with solid structure — helping brands build a strong digital presence.
-              </p>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-nowrap gap-2 md:gap-4 pt-4">
-              <button className="flex-1 group px-4 sm:px-10 py-5 bg-emerald-800 hover:bg-emerald-900 text-white font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-3xl shadow-2xl shadow-emerald-900/30 transition-all active:scale-95 flex items-center justify-center gap-3">
-               <a href="#contact">Hire Me</a> <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-              
-              <button className="flex-1 group px-4 sm:px-10 py-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-3xl shadow-sm hover:shadow-lg hover:bg-emerald-200 hover:border-emerald-800/30 transition-all active:scale-95 flex items-center justify-center gap-3">
-                 <a href="/resume.pdf" download="Dipak_Shah_Resume.pdf">Resume</a> <Download size={18} />
-              </button>
-            </div>
-
-            {/* Social Connect */}
-            <div className="flex items-center gap-6 pt-6 opacity-100 hover:opacity-100 transition-opacity">
-              <div className="flex gap-4">
-                <a href="https://www.facebook.com/profile.php?id=61580664927776" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Facebook size={22} /></a>
-                <a href="https://www.instagram.com/techie.dipak/" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Instagram size={22} /></a>
-                <a href="https://x.com/dipakshah56" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Twitter size={22} /></a>
-                <a href="https://github.com/dipak02" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Github size={22} /></a>
-                <a href="https://www.linkedin.com/in/dipakkumarshah" className="p-2 text-white bg-emerald-700 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-700 transition-all"><Linkedin size={22} /></a>
-              </div>
-            </div>
+              Experiences
+            </h2>
+            
+            <p className="text-emerald-100/70 leading-relaxed text-sm sm:text-base font-normal max-w-md">
+              I craft modern, responsive, and user-friendly websites that combine clean design with solid structure — helping brands build a strong digital presence.
+            </p>
           </div>
 
-          {/* Irregular Dynamic Image Grid Right (5 Columns) */}
-          <div className=" hidden lg:block lg:col-span-5 relative animate-in fade-in zoom-in duration-1000 delay-200">
-            {/* Dynamic Background Elements */}
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-700" />
-            
-            {/* Irregular Card Container (Border Removed) */}
-            <div className="relative z-10 group">
+          {/* CENTER: Image cutout with Side-Wise Dissolve Effect */}
+          <div className="lg:col-span-4 flex justify-center items-center relative z-20 order-1 lg:order-2 h-[340px] sm:h-[460px] lg:h-[600px]">
+            <div className="relative w-full h-full max-w-[320px] sm:max-w-[440px] lg:max-w-[500px] flex items-end justify-center">
+              
+              {/* Image Frame with Side and Bottom Smooth Blending Dissolve */}
               <div 
-                className="relative h-[500px] w-full overflow-hidden shadow-2xl transition-all duration-1000 group-hover:scale-[1.02]"
-                style={{ 
-                  borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-                  animation: "blob-animate 8s ease-in-out infinite"
+                className="w-full h-full flex items-end justify-center overflow-hidden relative"
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to top, transparent 0%, black 20%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to top, transparent 0%, black 20%)',
+                  maskComposite: 'intersect',
+                  WebkitMaskComposite: 'source-in'
                 }}
               >
-                <img
-                  alt="Dipak Kumar Shah"
-                  src={profile}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/40 to-transparent" />
-                
-                {/* Dynamic Floating Badge */}
-                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-4/5 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-[2rem] text-white shadow-2xl translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-2xl bg-emerald-500">
-                      <CheckCircle2 size={24} />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-widest opacity-80">Profile</p>
-                      <p className="text-base font-black uppercase tracking-tight">Verified Dev</p>
-                    </div>
-                  </div>
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 lg:hidden overflow-hidden px-4">
+                  <h1
+                    className={`text-[20vw] sm:text-[18vw] font-black tracking-tight text-emerald-300/25 leading-none text-center whitespace-normal uppercase max-w-[95vw] transition-all duration-500 ease-in-out ${
+                      fadeState === 'fade-in'
+                        ? 'opacity-100 scale-100 filter blur-0'
+                        : 'opacity-0 scale-95 filter blur-sm'
+                    }`}
+                  >
+                    {titles[currentTitleIndex]}
+                  </h1>
                 </div>
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[260px] h-[260px] rounded-full bg-emerald-900/30 blur-2xl pointer-events-none -z-20" />
+                <img
+                  src={profile}
+                  alt="Portrait"
+                  className="h-full w-full object-contain object-bottom drop-shadow-[0_15px_25px_rgba(0,0,0,0.5)] transform hover:scale-[1.03] transition-transform duration-500 ease-out"
+                />
               </div>
+
+              {/* Decorative background glow behind the cutout */}
+              <div className="absolute w-[250px] h-[250px] rounded-full bg-emerald-500/10 blur-3xl -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* RIGHT SIDE: Call To Action & Custom Social Grid */}
+          <div className="lg:col-span-4 flex flex-col justify-center items-center lg:items-start space-y-8 z-10 order-3 text-center lg:text-left w-full">
+            
+            {/* Action Buttons styled exact to the Pink Buttons in the image */}
+            <div className="flex flex-row gap-4 w-full justify-center lg:justify-start max-w-xs sm:max-w-md lg:max-w-none">
+              <button
+                type="button"
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.location.hash = '#contact';
+                  }
+                }}
+                className="flex-1 max-w-[150px] bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-2xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-[#db4b7d]/30 text-sm md:text-base tracking-wide whitespace-nowrap"
+              >
+                Hire Me
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/resume.pdf';
+                  link.download = 'Dipak_Shah_Resume.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
+                className="flex-1 max-w-[150px] bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-2xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-[#db4b7d]/30 text-sm md:text-base tracking-wide whitespace-nowrap"
+              >
+                Resume
+              </button>
             </div>
 
-            {/* Decorative Grid Dots */}
-            {/* <div className="absolute top-1/2 -right-8 -translate-y-1/2 grid grid-cols-3 gap-2 opacity-20 hidden md:grid">
-              {[...Array(9)].map((_, i) => (
-                <div key={i} className="size-2 rounded-full bg-emerald-800" />
-              ))}
-            </div> */}
-          </div>
-        </div>
-      </section>
-      {/* Footer Divider */}
-        <div className=" animate-in fade-in duration-1000">
-          <hr className="px-12 border-slate-200 dark:border-slate-800" />
-          <div className="flex justify-center -mt-3">
-             <div className="px-4 bg-slate-50 dark:bg-slate-950">
-                <BookUser className="size-6 text-slate-300 dark:text-slate-700" />
-             </div>
-          </div>
-        </div>
+            {/* Premium Social Circle Buttons */}
+            <div className="flex flex-row gap-5 items-center justify-center lg:justify-start wrap">
+              <a href="https://www.facebook.com/profile.php?id=61580664927776" target="_blank" className="w-11 h-11 rounded-xl bg-[#042118] hover:bg-[#073627] border border-[#0b4734] flex items-center justify-center text-[#1db386] hover:text-white transition-all transform hover:scale-110 shadow-md">
+                <Facebook size={18} fill="currentColor" stroke="none" />
+              </a>
+              <a href="https://www.instagram.com/_shahdipak/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-[#042118] hover:bg-[#073627] border border-[#0b4734] flex items-center justify-center text-[#1db386] hover:text-white transition-all transform hover:scale-110 shadow-md">
+                <Instagram size={18} />
+              </a>
+              <a href="https://x.com/dipakshah56" target="_blank" className="w-11 h-11 rounded-xl bg-[#042118] hover:bg-[#073627] border border-[#0b4734] flex items-center justify-center text-[#1db386] hover:text-white transition-all transform hover:scale-110 shadow-md">
+                <Twitter size={18} fill="currentColor" stroke="none" />
+              </a>
+              <a href="https://github.com/dipak02" target="_blank" className="w-11 h-11 rounded-xl bg-[#042118] hover:bg-[#073627] border border-[#0b4734] flex items-center justify-center text-[#1db386] hover:text-white transition-all transform hover:scale-110 shadow-md">
+                <Github size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/dipakkumarshah" target="_blank" className="w-11 h-11 rounded-xl bg-[#042118] hover:bg-[#073627] border border-[#0b4734] flex items-center justify-center text-[#1db386] hover:text-white transition-all transform hover:scale-110 shadow-md">
+                <Linkedin size={18} />
+              </a>
+            </div>
 
-      {/* Embedded Style for Blob Animation */}
-      <style>{`
-        @keyframes blob-animate {
-          0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-          50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-        }
-      `}</style>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
-};
-
-export default Main;
+}
