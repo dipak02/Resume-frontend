@@ -22,7 +22,7 @@ export default function App() {
   }, [titles]);
 
   return (
-    <div className="min-h-screen bg-[#073224] text-white font-sans flex items-center justify-center overflow-hidden relative selection:bg-[#db4b7d] selection:text-white py-12 px-4 sm:px-6 md:px-16">
+    <div className="min-h-screen bg-[#073224] text-white font-sans flex items-center justify-center overflow-hidden relative selection:bg-[#db4b7d] selection:text-white px-4 sm:px-6 md:px-16">
       
       {/* Dynamic Massive Background Text for desktop */}
       <div className="hidden lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center pointer-events-none select-none z-0 overflow-hidden">
